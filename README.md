@@ -1,8 +1,8 @@
 # Compendium Planning
 
 - Get my list of pokemon showing up on the page
-  1. write your fetch function -- validate with console.log
-  1. addUseEffect and set state with the response
+  1. write your fetch function -- validate with console.log //check
+  1. add UseEffect and set state with the response
   1. map through your state and display the name
   1. build out your PokeCard component -- use static values
   1. map through your items and display PokeCard
