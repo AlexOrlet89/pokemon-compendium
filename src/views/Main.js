@@ -9,8 +9,11 @@ export default function Main() {
   const [pokemon, setPokemon] = useState([]);
   const [types, setTypes] = useState([]);
   const [selectedType, setSelectedType] = useState('');
+  const [searchPokemon, setSearchPokemon] = useState('');
 
   const [loading, setLoading] = useState(true);
+
+  console.log(searchPokemon);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,18 +29,30 @@ export default function Main() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchFilteredPokemon(selectedType);
+      const data = await fetchPokemon();
+      setPokemon(data);
+      setLoading(false);
+
+      const typesData = await fetchTypes();
+      setTypes(typesData);
+    };
+    fetchData();
+  }, []); // we want this function to run when input is clicked in Search function, we will tostring searchpokemon and setit as searchparams and
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchFilteredPokemon(selectedType, searchPokemon);
       setPokemon(data); //when the dependency is triggered, the filtered data from fetchfiltered will be fed to setPokemon, which will update the pokemon state variable
     };
     fetchData();
-  }, [selectedType]); //on selectedtype state change, this will load pokemon with the same type
+  }, [selectedType, searchPokemon]); //on selectedtype state change, this will load pokemon with the same type
 
   if (loading) return <div>Loading...</div>;
 
   return (
     <main>
       <div>
-        <Search />
+        <Search setSearchPokemon={setSearchPokemon} />
       </div>
       <div className="filter">
         <TypeSelector types={types} setSelectedType={setSelectedType} selectedType={selectedType} />
