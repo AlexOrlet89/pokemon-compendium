@@ -2,6 +2,7 @@ import './Main.css';
 import { useEffect, useState } from 'react';
 import { fetchPokemon, fetchTypes } from '../services/pokemon';
 import PokeCard from '../components/Pokecard';
+import TypeSelector from '../components/TypeSelector';
 
 export default function Main() {
   const [pokemon, setPokemon] = useState([]);
@@ -19,7 +20,9 @@ export default function Main() {
 
   return (
     <main>
-      <div className="filter"></div>
+      <div className="filter">
+        <TypeSelector types={types} />
+      </div>
       <div className="pokemen">
         {pokemon.map((pokeman) => (
           // <p key={pokeman.id}>{pokeman.pokemon}</p>
