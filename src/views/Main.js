@@ -3,16 +3,21 @@ import { useEffect, useState } from 'react';
 import { fetchFilteredPokemon, fetchPokemon, fetchTypes } from '../services/pokemon';
 import PokeCard from '../components/Pokecard';
 import TypeSelector from '../components/TypeSelector';
+import Search from '../components/Search';
 
 export default function Main() {
   const [pokemon, setPokemon] = useState([]);
   const [types, setTypes] = useState([]);
   const [selectedType, setSelectedType] = useState('');
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchPokemon();
       setPokemon(data);
+      setLoading(false);
+
       const typesData = await fetchTypes();
       setTypes(typesData);
     };
@@ -27,8 +32,13 @@ export default function Main() {
     fetchData();
   }, [selectedType]); //on selectedtype state change, this will load pokemon with the same type
 
+  if (loading) return <div>Loading...</div>;
+
   return (
     <main>
+      <div>
+        <Search />
+      </div>
       <div className="filter">
         <TypeSelector types={types} setSelectedType={setSelectedType} selectedType={selectedType} />
       </div>
