@@ -22,4 +22,5 @@ export async function fetchFilteredPokemon(selectedType) {
   );
   const data = await resp.json();
   console.log(data);
+  return data.results;
 }

@@ -17,14 +17,15 @@ export default function Main() {
       setTypes(typesData);
     };
     fetchData();
-  }, []);
+  }, []); // on load, this will fetch every pokemon
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchFilteredPokemon(selectedType);
+      setPokemon(data); //when the dependency is triggered, the filtered data from fetchfiltered will be fed to setPokemon, which will update the pokemon state variable
     };
     fetchData();
-  }, [selectedType]);
+  }, [selectedType]); //on selectedtype state change, this will load pokemon with the same type
 
   return (
     <main>
