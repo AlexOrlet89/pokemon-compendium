@@ -10,16 +10,14 @@ export default function Main() {
   const [types, setTypes] = useState([]);
   const [selectedType, setSelectedType] = useState('');
   const [searchPokemon, setSearchPokemon] = useState('');
-  const [sorted, setSort] = useState('alpha');
+  const [sorted, setSort] = useState('asc');
 
   const [loading, setLoading] = useState(true);
 
   const setAlphabetical = () => {
-    console.log('set alpha');
     setSort('asc');
   };
   const setReverseAlphabetical = () => {
-    console.log('set anti-alpha');
     setSort('desc');
   };
 
