@@ -3,3 +3,12 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.pokemen:hover > .pokecard {
+  opacity: 10%;
+}
+
+.pokemen .pokecard:hover {
+  opacity: 100%;
+  z-index: 1;
+}

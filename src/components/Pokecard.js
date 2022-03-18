@@ -6,7 +6,9 @@ export default function PokeCard({
   type_2,
   color_1,
   color_2,
-  color_f,
+  ability_1,
+  ability_2,
+  ability_hidden,
   url_image,
 }) {
   return (
@@ -20,7 +22,8 @@ export default function PokeCard({
     >
       <p style={{ alignSelf: `flex-start` }}>
         {pokemon} <br></br>
-        types: {type_1}, {type_2}
+        types: {type_1}, {type_2} <br></br>
+        abilities: {ability_1}, {ability_2}, {ability_hidden}
       </p>
       <img src={`${url_image}`} alt={`${url_image}`} />
     </div>
