@@ -10,6 +10,7 @@ export default function PokeCard({
   ability_2,
   ability_hidden,
   url_image,
+  id,
 }) {
   return (
     <div
@@ -20,6 +21,7 @@ export default function PokeCard({
         borderRadius: `25px`,
       }}
     >
+      <h2 style={{ color: `${color_1}`, WebkitTextStrokeColor: `${color_2}` }}>{id}</h2>
       <p style={{ alignSelf: `flex-start` }}>
         {pokemon} <br></br>
         types: {type_1}, {type_2} <br></br>

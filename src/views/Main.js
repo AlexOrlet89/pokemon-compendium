@@ -58,6 +58,7 @@ export default function Main() {
 
   return (
     <main>
+      <h2>POKEDEX</h2>
       <div>
         <Search setSearchPokemon={setSearchPokemon} />
       </div>
