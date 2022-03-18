@@ -16,7 +16,6 @@ export default function Main() {
 
   const nextPage = () => {
     setPage(page + 1);
-    console.log(page);
   };
 
   const prevPage = () => {
@@ -24,7 +23,6 @@ export default function Main() {
     if (page <= 1) {
       setPage(1);
     }
-    console.log(page);
   };
 
   const setAlphabetical = () => {
