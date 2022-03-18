@@ -11,8 +11,21 @@ export default function Main() {
   const [selectedType, setSelectedType] = useState('');
   const [searchPokemon, setSearchPokemon] = useState('');
   const [sorted, setSort] = useState('asc');
-
+  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
+
+  const nextPage = () => {
+    setPage(page + 1);
+    console.log(page);
+  };
+
+  const prevPage = () => {
+    setPage(page - 1);
+    if (page <= 1) {
+      setPage(1);
+    }
+    console.log(page);
+  };
 
   const setAlphabetical = () => {
     setSort('asc');
@@ -35,11 +48,11 @@ export default function Main() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchFilteredPokemon(selectedType, searchPokemon, sorted);
+      const data = await fetchFilteredPokemon(selectedType, searchPokemon, sorted, page);
       setPokemon(data); //when the dependency is triggered, the filtered data from fetchfiltered will be fed to setPokemon, which will update the pokemon state variable
     };
     fetchData();
-  }, [selectedType, searchPokemon, sorted]); //on selectedtype state change, this will load pokemon with the same type
+  }, [selectedType, searchPokemon, sorted, page]); //on selectedtype state change, this will load pokemon with the same type
 
   if (loading) return <div>Loading...</div>;
 
@@ -55,6 +68,10 @@ export default function Main() {
       <div>
         <button onClick={setAlphabetical}>Alphabetical</button>
         <button onClick={setReverseAlphabetical}>Reverse Alphabetical</button>
+      </div>
+      <div>
+        <button onClick={nextPage}>Next Page</button>
+        <button onClick={prevPage}>Previous Page</button>
       </div>
       <div className="pokemen">
         {pokemon.map((pokeman) => (
