@@ -10,10 +10,18 @@ export default function Main() {
   const [types, setTypes] = useState([]);
   const [selectedType, setSelectedType] = useState('');
   const [searchPokemon, setSearchPokemon] = useState('');
+  const [sorted, setSort] = useState('alpha');
 
   const [loading, setLoading] = useState(true);
 
-  console.log(searchPokemon);
+  const setAlphabetical = () => {
+    console.log('set alpha');
+    setSort('asc');
+  };
+  const setReverseAlphabetical = () => {
+    console.log('set anti-alpha');
+    setSort('desc');
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,23 +37,11 @@ export default function Main() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchPokemon();
-      setPokemon(data);
-      setLoading(false);
-
-      const typesData = await fetchTypes();
-      setTypes(typesData);
-    };
-    fetchData();
-  }, []); // we want this function to run when input is clicked in Search function, we will tostring searchpokemon and setit as searchparams and
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchFilteredPokemon(selectedType, searchPokemon);
+      const data = await fetchFilteredPokemon(selectedType, searchPokemon, sorted);
       setPokemon(data); //when the dependency is triggered, the filtered data from fetchfiltered will be fed to setPokemon, which will update the pokemon state variable
     };
     fetchData();
-  }, [selectedType, searchPokemon]); //on selectedtype state change, this will load pokemon with the same type
+  }, [selectedType, searchPokemon, sorted]); //on selectedtype state change, this will load pokemon with the same type
 
   if (loading) return <div>Loading...</div>;
 
@@ -55,7 +51,12 @@ export default function Main() {
         <Search setSearchPokemon={setSearchPokemon} />
       </div>
       <div className="filter">
+        Filter by Type:
         <TypeSelector types={types} setSelectedType={setSelectedType} selectedType={selectedType} />
+      </div>
+      <div>
+        <button onClick={setAlphabetical}>Alphabetical</button>
+        <button onClick={setReverseAlphabetical}>Reverse Alphabetical</button>
       </div>
       <div className="pokemen">
         {pokemon.map((pokeman) => (
