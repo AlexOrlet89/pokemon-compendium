@@ -5,11 +5,11 @@
 }
 
 .pokemen:hover > .pokecard {
-  opacity: 10%;
+  opacity: 0.1;
 }
 
 .pokemen .pokecard:hover {
-  opacity: 100%;
+  opacity: 1;
   z-index: 1;
 }
 
