@@ -1,0 +1,22 @@
+.pokemen {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pokemen:hover > .pokecard {
+  opacity: 0.1;
+}
+
+.pokemen .pokecard:hover {
+  opacity: 1;
+  z-index: 1;
+}
+
+main {
+  margin-left: 8%;
+  margin-right: 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
